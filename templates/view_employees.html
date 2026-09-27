@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+
+{% block title %}Employees - Employee Management System{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-12">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <h2>Employee List</h2>
+            <a href="/add" class="btn btn-primary">Add New Employee</a>
+        </div>
+
+        <div class="card mb-3">
+            <div class="card-body">
+                <form method="GET" action="/employees" class="row g-3">
+                    <div class="col-md-4">
+                        <input type="text" class="form-control" name="search" placeholder="Search employees..." value="{{ search_query }}">
+                    </div>
+                    <div class="col-md-3">
+                        <select class="form-select" name="department">
+                            <option value="">All Departments</option>
+                            {% for dept in departments %}
+                                <option value="{{ dept }}" {% if dept == department_filter %}selected{% endif %}>{{ dept }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="col-md-2">
+                        <button type="submit" class="btn btn-primary w-100">Search</button>
+                    </div>
+                    <div class="col-md-2">
+                        <a href="/employees" class="btn btn-secondary w-100">Reset</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="table-responsive">
+            <table class="table table-striped table-hover">
+                <thead class="table-dark">
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Phone</th>
+                        <th>Department</th>
+                        <th>Designation</th>
+                        <th>Salary</th>
+                        <th>Join Date</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for employee in employees %}
+                        <tr>
+                            <td>{{ employee[0] }}</td>
+                            <td>{{ employee[1] }}</td>
+                            <td>{{ employee[2] }}</td>
+                            <td>{{ employee[3] }}</td>
+                            <td>{{ employee[4] }}</td>
+                            <td>{{ employee[5] }}</td>
+                            <td>${{ "%.2f"|format(employee[6]) }}</td>
+                            <td>{{ employee[7] }}</td>
+                            <td>
+                                <a href="/edit/{{ employee[0] }}" class="btn btn-sm btn-warning">Edit</a>
+                                <a href="/delete/{{ employee[0] }}" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure?')">Delete</a>
+                            </td>
+                        </tr>
+                    {% else %}
+                        <tr>
+                            <td colspan="9" class="text-center">No employees found.</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

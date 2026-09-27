@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard - Employee Management System{% endblock %}
+
+{% block content %}
+<h2>Dashboard</h2>
+
+<div class="row mb-4">
+    <div class="col-md-4">
+        <div class="card text-white bg-primary">
+            <div class="card-body">
+                <h5 class="card-title">Total Employees</h5>
+                <p class="card-text display-4">{{ total_employees }}</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card text-white bg-success">
+            <div class="card-body">
+                <h5 class="card-title">Total Salary</h5>
+                <p class="card-text display-4">${{ "%.2f"|format(total_salary) }}</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card text-white bg-info">
+            <div class="card-body">
+                <h5 class="card-title">Departments</h5>
+                <p class="card-text display-4">{{ departments|length }}</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header">
+                <h5>Departments Breakdown</h5>
+            </div>
+            <div class="card-body">
+                <ul class="list-group">
+                    {% for dept, count in departments %}
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            {{ dept }}
+                            <span class="badge bg-primary rounded-pill">{{ count }}</span>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header">
+                <h5>Recent Employees</h5>
+            </div>
+            <div class="card-body">
+                <ul class="list-group">
+                    {% for employee in recent_employees %}
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            {{ employee[1] }}
+                            <span class="badge bg-secondary">{{ employee[4] }}</span>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

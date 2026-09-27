@@ -1,0 +1,43 @@
+body {
+    background-color: #f8f9fa;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.navbar-brand {
+    font-weight: bold;
+    font-size: 1.25rem;
+}
+
+.jumbotron {
+    background-color: #ffffff;
+    border: 1px solid #dee2e6;
+}
+
+.card {
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    transition: transform 0.2s;
+}
+
+.card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+.table-responsive {
+    background-color: white;
+    border-radius: 8px;
+    padding: 15px;
+}
+
+.btn {
+    margin: 2px;
+}
+
+.alert {
+    margin-bottom: 20px;
+}
+
+.display-4 {
+    font-size: 3rem;
+    font-weight: 300;
+}

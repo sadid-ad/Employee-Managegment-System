@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block title %}Home - Employee Management System{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-12">
+        <div class="jumbotron bg-light p-5 rounded">
+            <h1 class="display-4">Welcome to Employee Management System</h1>
+            <p class="lead">A comprehensive solution for managing your employees efficiently.</p>
+            <hr class="my-4">
+            <p>Manage employee records, track departments, and monitor workforce statistics.</p>
+            <a class="btn btn-primary btn-lg" href="/employees" role="button">View Employees</a>
+            <a class="btn btn-success btn-lg" href="/add" role="button">Add New Employee</a>
+            <a class="btn btn-info btn-lg" href="/dashboard" role="button">Dashboard</a>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-4">
+    <div class="col-md-4">
+        <div class="card text-center">
+            <div class="card-body">
+                <h5 class="card-title">Total Employees</h5>
+                <p class="card-text display-4">{{ total_employees if total_employees is defined else 'N/A' }}</p>
+                <a href="/employees" class="btn btn-primary">View All</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card text-center">
+            <div class="card-body">
+                <h5 class="card-title">Departments</h5>
+                <p class="card-text display-4">{{ departments|length if departments is defined else 'N/A' }}</p>
+                <a href="/employees" class="btn btn-primary">Manage</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card text-center">
+            <div class="card-body">
+                <h5 class="card-title">Quick Actions</h5>
+                <div class="d-grid gap-2">
+                    <a href="/add" class="btn btn-success">Add Employee</a>
+                    <a href="/dashboard" class="btn btn-info">View Dashboard</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
